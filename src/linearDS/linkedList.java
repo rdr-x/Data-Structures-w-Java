@@ -83,6 +83,7 @@ public class linkedList {
         Node newHead = this.head.nextNode;
         oldHead.setData(null);
         this.head = newHead;
+        total -= 1;
         System.out.println("Now the first one is: " + this.head.data);
     }
 
