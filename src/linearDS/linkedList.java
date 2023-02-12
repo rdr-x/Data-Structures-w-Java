@@ -50,17 +50,21 @@ public class linkedList {
         Node current = this.head;
         Node prevNode;
         Node nextNode;
-        while(_node != current) {
-            if (current.nextNode != _node) {
-                current = current.nextNode;
-            } else {
-                prevNode = current;
-                current = current.nextNode;
-                nextNode = current.nextNode;
-                prevNode.bindNextNode(nextNode);
+        try {
+            while(_node != current) {
+                if (current.nextNode != _node) {
+                    current = current.nextNode;
+                } else {
+                    prevNode = current;
+                    current = current.nextNode;
+                    nextNode = current.nextNode;
+                    prevNode.bindNextNode(nextNode);
+                }
             }
+            total -= 1;
+        } catch (NullPointerException e) {
+            System.out.println("The node your trying to remove doesn't exist in this list");
         }
-        total -= 1;
     }
 
     public int findPosition(Node _node) {

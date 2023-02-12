@@ -20,6 +20,7 @@ public class Main {
         list.addNode(testNode5);
         list.insertNode(4, new Node("SEIS PERRO"));
         System.out.println(list.isEmpty());
+        list.removeNode(new Node(7.00));
 
 
         /*Exercise1 array = new Exercise1();
