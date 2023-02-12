@@ -18,9 +18,10 @@ public class Main {
         list.addNode(testNode3);
         list.addNode(testNode4);
         list.addNode(testNode5);
-        list.insertNode(4, new Node("SEIS PERRO"));
-        System.out.println(list.isEmpty());
-        list.removeNode(new Node(7.00));
+        list.insertNode(4, new Node("cuatro y medio"));
+        list.addNode(new Node(6.00));
+        list.removeLastNode();
+        list.getList();
 
 
         /*Exercise1 array = new Exercise1();

@@ -67,6 +67,21 @@ public class linkedList {
         }
     }
 
+    public void removeLastNode() {
+        Node current = this.head;
+        while(current.nextNode != this.tail) {
+            current = current.nextNode;
+        }
+        Object removedNode = current.nextNode.getData();
+        this.tail = current;
+        this.tail.nextNode = null;
+        System.out.println("Removed Element: " + removedNode);
+    }
+
+/*    public Object removeFirstNode() {
+
+    }*/
+
     public int findPosition(Node _node) {
         Node current = this.head;
         int pos = 1;
