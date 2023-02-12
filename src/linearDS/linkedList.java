@@ -78,9 +78,13 @@ public class linkedList {
         System.out.println("Removed Element: " + removedNode);
     }
 
-/*    public Object removeFirstNode() {
-
-    }*/
+    public void removeFirstNode() {
+        Node oldHead = this.head;
+        Node newHead = this.head.nextNode;
+        oldHead.setData(null);
+        this.head = newHead;
+        System.out.println("Now the first one is: " + this.head.data);
+    }
 
     public int findPosition(Node _node) {
         Node current = this.head;

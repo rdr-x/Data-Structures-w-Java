@@ -20,7 +20,8 @@ public class Main {
         list.addNode(testNode5);
         list.insertNode(4, new Node("cuatro y medio"));
         list.addNode(new Node(6.00));
-        list.removeLastNode();
+        list.getList();
+        list.removeFirstNode();
         list.getList();
 
 
