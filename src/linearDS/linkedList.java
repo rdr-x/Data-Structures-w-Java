@@ -97,17 +97,21 @@ public class linkedList {
     }
 
     public void getList() {
-        Node current = this.head;
-        try {
-            System.out.println("List elements:");
-            System.out.println("========================");
-            while (current != null){
-                System.out.println("{" + current.data + "}");
-                current = current.nextNode;
+        if(!this.isEmpty()){
+            Node current = this.head;
+            try {
+                System.out.println("List elements:");
+                System.out.println("========================");
+                while (current != null){
+                    System.out.println("{" + current.data + "}");
+                    current = current.nextNode;
+                }
+                System.out.println("========================");
+            } catch (NullPointerException e) {
+                 System.out.println("Null pointer exception error");
             }
-            System.out.println("========================");
-        } catch (NullPointerException e) {
-             System.out.println("Null pointer exception error");
+        } else {
+            System.out.println("The list is empty.");
         }
     }
 
