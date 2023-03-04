@@ -20,4 +20,8 @@ public class StackNode {
     public String getValue() {
         return this.value;
     }
+
+    public void setValue(String _value) {
+        this.value = _value;
+    }
 }
