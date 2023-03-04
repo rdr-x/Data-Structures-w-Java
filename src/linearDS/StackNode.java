@@ -1,9 +1,9 @@
 package linearDS;
 
-class StackNode {
-    private Integer ID;
+public class StackNode {
     private String value;
-    private StackNode nextNode;
+    public StackNode nextNode;
+    public StackNode prevNode;
     public StackNode(String _value) {
         this.value = _value;
         this.nextNode = null;
@@ -13,12 +13,8 @@ class StackNode {
         this.nextNode = _node;
     }
 
-    public void getNextNode() {
-        System.out.println(this.nextNode);
-    }
-
-    public Integer getID() {
-        return this.ID;
+    public StackNode getNextNode() {
+        return this.nextNode;
     }
 
     public String getValue() {
