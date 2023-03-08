@@ -1,59 +1,46 @@
-import exercises.Exercise1;
-import exercises.Exercise2;
-import linearDS.Node;
-import linearDS.linkedList;
+import linearDS.Queue;
+import linearDS.StackNode;
+import linearDS.Stack;
 import java.util.Scanner;
-import java.util.Random;
+
 public class Main {
     public static void main(String[] args) {
-        Node testNode = new Node("Soy el primer nodo");
-        Node testNode2 = new Node(2);
-        Node testNode3 = new Node("Tercero");
-        Node testNode4 = new Node(4);
-        Node testNode5 = new Node("QUINTOOOOO");
-
-        linkedList list = new linkedList();
-        list.initialize(testNode);
-        list.addNode(testNode2);
-        list.addNode(testNode3);
-        list.addNode(testNode4);
-        list.addNode(testNode5);
-        list.insertNode(4, new Node("cuatro y medio"));
-        list.addNode(new Node(6.00));
-        list.getList();
-        list.removeFirstNode();
-        list.getList();
-
-
-        /*Exercise1 array = new Exercise1();
-        array.fillArray();
-        array.showValues();*/
-/*        System.out.println("Enter the size of the array: \n");
+        //defining variables to store user input
+        String userInput;
+        String[] userInputSplited;
+        //instance of scanner to receive inputs from the terminal
         Scanner input = new Scanner(System.in);
-        int num = input.nextInt();
-        Exercise2 array = new Exercise2(num);
-        array.showAndAddValues();*/
-//        Component array = new Component(10);
-//        int[][] array = {{1,2,3},{4,5,6}};
-/*        System.out.println(component.getName());
-        component.setName("tested!", 18);
-        System.out.println(component.getName());
-        System.out.println(component.getAge());
-
-        Random rm = new Random();
-        int num;
-        int vector[] = new int[5];
-        System.out.println(vector.length);
-
-        for (int i = 0; i < vector.length; i++) {
-            num = rm.nextInt(9);
-            vector[i] = num;
+        System.out.println("Welcome to the process management simulator program");
+        System.out.println("Please, enter some lines now: ");
+        //getting the input and storing the string value in a variable
+        userInput = input.nextLine();
+        //splitting the content and storing in a vector
+        userInputSplited = userInput.split("[\\w*][^\"+\\w\"$]");
+        Stack process = new Stack();
+        Stack process2 = new Stack();
+        for (String word: userInputSplited) {
+            if (process.isEmpty()) {
+                process.init(new StackNode(word));
+                process2.init(new StackNode(word));
+            } else {
+                process.push(new StackNode(word));
+                process2.push(new StackNode(word));
+            }
         }
+        input.close();
 
-        for (int i = 0; i < vector.length; i++) {
-            System.out.println(i+"=["+vector[i]+"]");
-        }*/
+        Queue manager = new Queue();
+        manager.init(process);
+        System.out.println(manager.isEmpty());
+        manager.showFirstElement().getElements();
+        System.out.println(manager.total());
+        manager.getElements();
 
+        manager.enqueue(process2);
+        System.out.println(manager.total());
+        manager.getElements();
 
+        manager.dequeue();
+        System.out.println(manager.total());
     }
 }
