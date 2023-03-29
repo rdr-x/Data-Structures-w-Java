@@ -15,9 +15,6 @@ public class BST {
 
     public void init(BSTNode _node) {
         this.root = _node;
-        this.inorderList = new ArrayList<Integer>();
-        this.preorderList = new ArrayList<Integer>();
-        this.postorderList = new ArrayList<Integer>();
     }
 
     public BSTNode findNode(BSTNode current, int target) {
@@ -37,6 +34,9 @@ public class BST {
     }
 
     public void addNode(BSTNode current, BSTNode _node){
+        if (current == null) {
+            current = new BSTNode(_node.getData());
+        }
         if (_node.getData() == current.getData()) {
             System.out.println("This tree doesn't allow duplicate items");
         }
@@ -95,6 +95,7 @@ public class BST {
         return _node;
     }
     public void inorder() {
+        this.inorderList = new ArrayList<Integer>();
         inorder(this.root);
     }
     private void inorder(BSTNode _node) {
@@ -105,6 +106,7 @@ public class BST {
         }
     }
     public void preorder() {
+        this.preorderList = new ArrayList<Integer>();
         preorder(this.root);
     }
     private void preorder(BSTNode _node) {
@@ -115,6 +117,7 @@ public class BST {
         }
     }
     public void postorder(){
+        this.postorderList = new ArrayList<Integer>();
         postorder(this.root);
     }
 
