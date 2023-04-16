@@ -1,33 +1,59 @@
 package hashTable;
 import java.util.ArrayList;
 import java.util.Random;
+import trees.*;
 
 public class HashTable {
 
-    int size, elements, FC;
-    private ArrayList<Entry> table;
+    public int size, elements;
+    private double FC;
+
+
+    public ArrayList<BST> table;
 
     public HashTable() {
-        this.table = new ArrayList<Entry>(randomPrimeNumber());
-        this.size = table.size();
+        this.size = randomPrimeNumber();
+        this.table = new ArrayList<BST>(this.size);
         this.elements = 0;
         this.FC = 0;
     }
-    private int hashing(String _key) { return 0; }
-    public Entry search(String _key) {
+    public int hashing(String _key) {
+        int hash, total = 0, mult = 1;
+        char characters[] = _key.toCharArray();
+        for (char lettter:
+             characters) {
+            int ascii = (int) lettter;
+            total += ascii * mult;
+            mult++;
+        }
+        hash = total % this.size;
+        return hash;
+    }
+    public BST search(String _key) {
         int index = hashing(_key);
         return table.get(index);
     }
-    public void addEntry(Entry _entry){
-        int index = hashing(_entry.key);
-        this.table.add(index,_entry);
-        System.out.println(_entry.key + "ADDED");
+    public void addEntry(String key, long cardNumber){
+        int index = hashing(key);
+        BST currentTree = this.table.get(index);
+        BSTNode node = new BSTNode(cardNumber);
+        if (currentTree == null) {
+            currentTree = new BST();
+            currentTree.init(node);
+            this.table.add(index,currentTree);
+        } else {
+            currentTree.addNode(currentTree.getRoot(),node);
+        }
+        this.elements++;
+        System.out.println(key + " ADDED");
     }
-    public Entry removeEntry(String _key){
+    public void removeEntry(String _key, long card){
         int index = hashing(_key);
-        Entry element = this.table.get(index);
-        this.table.remove(index);
-        return element;
+        BST currentTree = this.table.get(index);
+        if (currentTree == null) System.out.println("There's nothing to be removed here");
+        BSTNode removedNode = currentTree.removeNode(currentTree.getRoot(),card);
+        this.elements--;
+        System.out.println("The card " + removedNode.getData() + "from " + _key + " was removed");
     }
     private void fragmentation() {}
     private void inverseFragmentation(){}
@@ -41,7 +67,7 @@ public class HashTable {
         Random rand = new Random();
         while (true) {
             int randomNumber = rand.nextInt(100);
-            if (isPrimeNumber(randomNumber)) return randomNumber;
+            if (isPrimeNumber(randomNumber) && randomNumber > 10) return randomNumber;
         }
     }
 }

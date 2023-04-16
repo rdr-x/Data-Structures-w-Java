@@ -5,6 +5,7 @@ import linearDS.Stack;
 import java.util.Scanner;
 import trees.BSTNode;
 import trees.BST;
+import hashTable.HashTable;
 
 public class Main {
     public static void main(String[] args) {
@@ -48,7 +49,7 @@ public class Main {
 //        System.out.println(manager.total());
 
         //ABB EJERCICIO DESCOMENTAR PARA PROBAR
-        BST tree = new BST();
+/*        BST tree = new BST();
         BSTNode root = new BSTNode(10);
         tree.init(root);
         tree.addNode(root,new BSTNode(5));
@@ -65,6 +66,11 @@ public class Main {
         tree.inorder();
         tree.preorder();
         tree.postorder();
-        tree.getElements();
+        tree.getElements();*/
+
+        //Hashtable EX
+        HashTable banking = new HashTable();
+        banking.addEntry("Rod",5555555555l);
+
     }
 }

@@ -12,7 +12,7 @@ public class BST {
     protected BSTNode root;
     /*protected vectors to store the result from every route
     * this allows the DS to manage this data as needed*/
-    private ArrayList<Integer> inorderList, preorderList, postorderList;
+    private ArrayList<Long> inorderList, preorderList, postorderList;
     //constructor set root as null
     public BST() {
         this.root = null;
@@ -31,7 +31,7 @@ public class BST {
     * if it's less than the current value it will be searched in the left subtree
     * if it's greater than the current value it will be searched in the right subtree
     * */
-    public BSTNode findNode(BSTNode current, int target) {
+    public BSTNode findNode(BSTNode current, long target) {
         if (current == null) {
             return null;
         }
@@ -84,7 +84,7 @@ public class BST {
     * if the target is greater than the current node's value we keep searching in the right tree
     * the method validates the number of child nodes assigned to the target in order to reassign them
     * */
-    public BSTNode removeNode(BSTNode current, int target){
+    public BSTNode removeNode(BSTNode current, long target){
         if (current == null) {
             return null;
         }
@@ -131,7 +131,7 @@ public class BST {
     * */
 
     public void inorder() {
-        this.inorderList = new ArrayList<Integer>();
+        this.inorderList = new ArrayList<Long>();
         inorder(this.root);
     }
     private void inorder(BSTNode _node) {
@@ -142,7 +142,7 @@ public class BST {
         }
     }
     public void preorder() {
-        this.preorderList = new ArrayList<Integer>();
+        this.preorderList = new ArrayList<Long>();
         preorder(this.root);
     }
     private void preorder(BSTNode _node) {
@@ -153,7 +153,7 @@ public class BST {
         }
     }
     public void postorder(){
-        this.postorderList = new ArrayList<Integer>();
+        this.postorderList = new ArrayList<Long>();
         postorder(this.root);
     }
 
@@ -202,6 +202,10 @@ public class BST {
                 System.out.println("No correct input provided");
         }
         input.close();
+    }
+    //Getter to retrieve the root element
+    public BSTNode getRoot() {
+        return this.root;
     }
 
 }
