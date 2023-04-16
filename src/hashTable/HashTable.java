@@ -1,32 +1,62 @@
 package hashTable;
+
+import trees.BST;
+
 import java.util.ArrayList;
 import java.util.Random;
 
 public class HashTable {
 
     int size, elements, FC;
-    private ArrayList<Entry> table;
-
+    private BSTHash table;
+    BSTNode root;
     public HashTable() {
-        this.table = new ArrayList<Entry>(randomPrimeNumber());
-        this.size = table.size();
+        this.table = new BSTHash();
+        this.size = 0;
         this.elements = 0;
         this.FC = 0;
+        this.root = null;
     }
-    private int hashing(String _key) { return 0; }
+    private int hashing(String _key)
+    {     // Utilizamos un multiplicador para cada posición de la cadena, el cual se incrementará conforme avanzamos en la cadena
+        int mult = 1;
+        // Inicializamos el valor del hashValue en 0
+        int hashValue = 0;
+        // Utilizamos un for loop para recorrer la cadena string, convertir cada letra en un entero(ord - ASCII), multiplicar
+        // este valor por el mult y sumarlo al hashValue
+        for (int i = 0; i < _key.length(); i++){
+            // Tomamos la letra en la posición i
+            char ch = _key.charAt(i);
+            // Transformamos la letra en un entero
+            hashValue += mult * (int) ch;
+            mult += 1;
+        }
+        return hashValue;
+    }
     public Entry search(String _key) {
         int index = hashing(_key);
-        return table.get(index);
+        if (table.findNode(this.root, index) == null){
+            return null;
+        }
+        return table.findNode(this.root, index).entrada;
     }
     public void addEntry(Entry _entry){
         int index = hashing(_entry.key);
-        this.table.add(index,_entry);
-        System.out.println(_entry.key + "ADDED");
+        System.out.println(index);
+        BSTNode newNode = new BSTNode(index, _entry);
+        if (this.table.root == null){
+            this.root = newNode;
+            this.table.init(this.root);
+        }
+        else {
+            this.table.addNode(this.root, newNode, _entry);
+        }
+        System.out.println(_entry.key + " ADDED");
     }
-    public Entry removeEntry(String _key){
+    public BSTNode removeEntry(String _key){
         int index = hashing(_key);
-        Entry element = this.table.get(index);
-        this.table.remove(index);
+        BSTNode element = this.table.findNode(this.root, index);
+        this.table.removeNode(this.root, index);
         return element;
     }
     private void fragmentation() {}
