@@ -13,9 +13,13 @@ public class HashTable {
 
     public HashTable() {
         this.size = randomPrimeNumber();
-        this.table = new ArrayList<BST>(this.size);
+        table = new ArrayList<BST>(size);
         this.elements = 0;
         this.FC = 0;
+        for (BST entry:
+             table) {
+            this.table.add(new BST());
+        }
     }
     public int hashing(String _key) {
         int hash, total = 0, mult = 1;
@@ -26,7 +30,7 @@ public class HashTable {
             total += ascii * mult;
             mult++;
         }
-        hash = total % this.size;
+        hash = (total & 0x7fffffff) % this.size;
         return hash;
     }
     public BST search(String _key) {

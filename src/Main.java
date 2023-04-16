@@ -70,6 +70,7 @@ public class Main {
 
         //Hashtable EX
         HashTable banking = new HashTable();
+        int hash = banking.hashing("Rod");
         banking.addEntry("Rod",5555555555l);
 
     }
