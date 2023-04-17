@@ -13,12 +13,11 @@ public class HashTable {
 
     public HashTable() {
         this.size = randomPrimeNumber();
-        table = new ArrayList<BST>(size);
+        table = new ArrayList<>(this.size);
         this.elements = 0;
         this.FC = 0;
-        for (BST entry:
-             table) {
-            this.table.add(new BST());
+        for (int i = 0; i < size - 1; i++) {
+            table.add(null);
         }
     }
     public int hashing(String _key) {
@@ -49,7 +48,7 @@ public class HashTable {
             currentTree.addNode(currentTree.getRoot(),node);
         }
         this.elements++;
-        System.out.println(key + " ADDED");
+        System.out.println(key + "'s card ADDED");
     }
     public void removeEntry(String _key, long card){
         int index = hashing(_key);

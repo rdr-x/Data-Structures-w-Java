@@ -2,6 +2,8 @@ import com.sun.source.tree.Tree;
 import linearDS.Queue;
 import linearDS.StackNode;
 import linearDS.Stack;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 import trees.BSTNode;
 import trees.BST;
@@ -69,9 +71,9 @@ public class Main {
         tree.getElements();*/
 
         //Hashtable EX
+
         HashTable banking = new HashTable();
-        int hash = banking.hashing("Rod");
-        banking.addEntry("Rod",5555555555l);
+        banking.addEntry("Rodrigo",5555555555l);
 
     }
 }
