@@ -16,7 +16,7 @@ public class HashTable {
         table = new ArrayList<>(this.size);
         this.elements = 0;
         this.FC = 0;
-        for (int i = 0; i < size - 1; i++) {
+        for (int i = 0; i < size; i++) {
             table.add(null);
         }
     }
@@ -32,31 +32,38 @@ public class HashTable {
         hash = (total & 0x7fffffff) % this.size;
         return hash;
     }
-    public BST search(String _key) {
+    public void search(String _key) {
         int index = hashing(_key);
-        return table.get(index);
+        BST currentTree = table.get(index);
+
+
+
     }
     public void addEntry(String key, long cardNumber){
         int index = hashing(key);
         BST currentTree = this.table.get(index);
-        BSTNode node = new BSTNode(cardNumber);
+        Entry _entry = new Entry(key,cardNumber);
+        BSTNode node = new BSTNode(_entry);
         if (currentTree == null) {
             currentTree = new BST();
             currentTree.init(node);
+            this.table.remove(null);
             this.table.add(index,currentTree);
         } else {
-            currentTree.addNode(currentTree.getRoot(),node);
+            this.table.remove(null);
+            currentTree.addNode(currentTree.getRoot(),_entry);
         }
         this.elements++;
-        System.out.println(key + "'s card ADDED");
+        System.out.println(key + "'s card: " + cardNumber +" has been recently ADDED");
     }
-    public void removeEntry(String _key, long card){
+    public void removeEntry(String _key){
         int index = hashing(_key);
         BST currentTree = this.table.get(index);
         if (currentTree == null) System.out.println("There's nothing to be removed here");
-        BSTNode removedNode = currentTree.removeNode(currentTree.getRoot(),card);
+        BSTNode _node = currentTree.findNode(currentTree.getRoot(),);
+        currentTree.removeNode(currentTree.getRoot(),_node.getCardData());
         this.elements--;
-        System.out.println("The card " + removedNode.getData() + "from " + _key + " was removed");
+        System.out.println("The card " + _node.getCardData() + " from " + _key + " was removed");
     }
     private void fragmentation() {}
     private void inverseFragmentation(){}

@@ -74,6 +74,8 @@ public class Main {
 
         HashTable banking = new HashTable();
         banking.addEntry("Rodrigo",5555555555l);
-
+        banking.addEntry("Juanita", 6666666666l);
+        long res = banking.search("Rodrigo").getCardData();
+        System.out.println("The card number associated is: " + res);
     }
 }

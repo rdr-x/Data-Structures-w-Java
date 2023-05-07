@@ -1,5 +1,5 @@
 package trees;
-
+import hashTable.Entry;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -31,18 +31,18 @@ public class BST {
     * if it's less than the current value it will be searched in the left subtree
     * if it's greater than the current value it will be searched in the right subtree
     * */
-    public BSTNode findNode(BSTNode current, long target) {
+    public BSTNode findNode(BSTNode current, Entry _entry) {
         if (current == null) {
             return null;
         }
-        if (current.getData() == target) {
+        if (current.getCardData() == _entry.getCardNumber()) {
             return current;
         }
-        if (target < current.getData() && current.leftNode != null) {
-            return findNode(current.leftNode,target);
+        if (_entry.getCardNumber() < current.getCardData() && current.leftNode != null) {
+            return findNode(current.leftNode,_entry);
         }
-        if (target > current.getData() && current.rightNode != null) {
-            return findNode(current.rightNode,target);
+        if (_entry.getCardNumber() > current.getCardData() && current.rightNode != null) {
+            return findNode(current.rightNode,_entry);
         }
         return null;
     }
@@ -53,26 +53,26 @@ public class BST {
     * If the new value is less than the current one we keep searching in the left tree
     * If the new value is greater than the current one we keep searching in the right tree
     * */
-    public void addNode(BSTNode current, BSTNode _node){
+    public void addNode(BSTNode current, Entry _node){
         if (current == null) {
-            current = new BSTNode(_node.getData());
+            current = new BSTNode(_node);
         }
-        if (_node.getData() == current.getData()) {
+        if (_node.getCardNumber() == current.getCardData()) {
             _node = null;
             System.out.println("This tree doesn't allow duplicate items");
         }
-        if (_node.getData() < current.getData()) {
+        if (_node.getCardNumber() < current.getCardData()) {
             if (current.leftNode != null) {
                 addNode(current.leftNode, _node);
             } else {
-                current.leftNode = _node;
+                current.leftNode = new BSTNode(_node);
                 current.leftNode.parent = current;
             }
         } else {
             if (current.rightNode != null) {
                 addNode(current.rightNode, _node);
             } else {
-                current.rightNode = _node;
+                current.rightNode = new BSTNode(_node);
                 current.rightNode.parent = current;
             }
         }
@@ -105,8 +105,9 @@ public class BST {
                 current.rightNode = removeNode(current.rightNode, temp.getData());
             }
         }
+        if(current.getData() == target) current = null;
 
-        return current;
+        return null;
     }
     /*return the min element*/
     public BSTNode minElement(BSTNode _node) {
